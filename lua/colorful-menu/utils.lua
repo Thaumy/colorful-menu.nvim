@@ -355,7 +355,7 @@ function M.apply_post_processing(completion_item, item, ls)
             shift_color_by(item, long_label_width - short_label_width - string.len(pretty_end), long_label_width)
             item.text = item.text:sub(1, short_label_width) .. pretty_end .. item.text:sub(long_label_width + 1)
             table.insert(item.highlights, {
-                "@comment",
+                "@punctuation",
                 range = {
                     short_label_width + (pretty_end == "(…)" and 1 or 0),
                     short_label_width + (pretty_end == "(…)" and string.len("…)") or string.len("…")),
@@ -382,8 +382,8 @@ function M.apply_post_processing(completion_item, item, ls)
                 .. string.rep(" ", short_label_width - ascii_pos)
                 .. item.text:sub(long_label_width + 1)
             table.insert(item.highlights, {
-                "@comment",
-                range = { ascii_pos, ascii_pos + string.len("…)") - 1 },
+                "@punctuation",
+                range = { ascii_pos, ascii_pos + string.len("…)") },
             })
         end
     else
